@@ -2,6 +2,7 @@ package pages;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,9 +21,6 @@ public class CreateAccountPage extends Sales_BaseClass {
 	@FindBy(xpath = "//button[contains(@aria-label, 'Ownership')]")
 	private WebElement btnOwnership;
 
-	@FindBy(xpath = "//span[text()='Public']")
-	private WebElement lnkPublic;
-
 	@FindBy(xpath = "//button[text()='Save']")
 	private WebElement btn_save;
 
@@ -31,15 +29,13 @@ public class CreateAccountPage extends Sales_BaseClass {
 		inputAccountName.sendKeys(accountName);
 		return this;
 	}
-
-	public void enterOwnership() {
+	
+	public CreateAccountPage selectOwnership(String input) {
+		new WebDriverWait(driver, Duration.ofSeconds(40)).until(ExpectedConditions.visibilityOf(btnOwnership));
 		btnOwnership.click();
-	}
-
-	public void selectOwnershipAsPublic() {
-		btnOwnership.click();
-		new WebDriverWait(driver, Duration.ofSeconds(40)).until(ExpectedConditions.visibilityOf(lnkPublic));
-		lnkPublic.click();
+		String xpathInput = "//span[text()='"+input+"']";
+		driver.findElement(By.xpath(xpathInput)).click();
+		return this;
 	}
 
 	public void clickOnSave() {
