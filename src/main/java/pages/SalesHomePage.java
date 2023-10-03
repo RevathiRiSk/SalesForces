@@ -1,14 +1,10 @@
 package pages;
 
-import java.time.Duration;
-
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SalesHomePage extends Sales_BaseClass {
 
@@ -20,8 +16,9 @@ public class SalesHomePage extends Sales_BaseClass {
 	@FindBy(xpath = "//span[text()='Accounts']")
 	private WebElement btn_accounts;
 
-	@FindBy(xpath = "//div[text()='New']")
-	private WebElement btn_new;
+	@FindBy(xpath = "//span[text()='Opportunities']")
+	private WebElement btn_opportunity;
+	
 
 	public AccountsPage clickOnAccounts() {
 	//	new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(btn_accounts));
@@ -31,12 +28,11 @@ public class SalesHomePage extends Sales_BaseClass {
 		return accP;
 	}
 
-	public CreateAccountPage clickOnNew() {
-		new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(btn_new));
-		btn_new.click();
-		CreateAccountPage accountP = new CreateAccountPage(driver);
-		PageFactory.initElements(driver, accountP);
-		return accountP;
-
-	}
+	public OpportunityPage clickOnOpportunity() {
+		//	new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(btn_accounts));
+	        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn_opportunity);
+	        OpportunityPage oppP = new OpportunityPage(driver);
+			PageFactory.initElements(driver, oppP);
+			return oppP;
+		}
 }
