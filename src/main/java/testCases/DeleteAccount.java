@@ -14,6 +14,7 @@ public class DeleteAccount extends BaseTest{
 	public void TC003_deleteAccountTest() throws InterruptedException {
 		
 		String accountName = "Duplicate";
+		String expectedResult = "No items to display.";
 /*		LoginPage loginP = LoginPage.initialize(driver);
 		HomePage homeP = loginP.loginWithValidCredentials("revmohan@gmail.com", "Mohanrevathi1!");
 */		AppLauncherPage appP = homeP.clickOnToggle().clickOnViewAll();
@@ -21,7 +22,6 @@ public class DeleteAccount extends BaseTest{
 		AccountsPage accP = salesP.clickOnAccounts().inputInSearch(accountName).clickDropDown().clickDelete().confrm_delete();
 		String actualResult = accP.getdelete_msg();
 		System.out.println("Actual Result: " + actualResult);
-		Assert.assertEquals(actualResult, accountName);
-		
+		Assert.assertEquals(actualResult, expectedResult);
 	}
 }
