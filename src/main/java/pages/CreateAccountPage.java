@@ -38,8 +38,9 @@ public class CreateAccountPage extends Sales_BaseClass {
 		return this;
 	}
 
-	public void clickOnSave() {
+	public AccountsPage clickOnSave() {
 		btn_save.click();
+		return new AccountsPage(driver);
 	}
 
 }
