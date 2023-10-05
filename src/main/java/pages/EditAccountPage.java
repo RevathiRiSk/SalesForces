@@ -124,8 +124,9 @@ public class EditAccountPage extends Sales_BaseClass {
 		return this;
 	}
 	
-	public void clickSave() {
+	public AccountsPage clickSave() {
 		btn_save.click();
+		return new AccountsPage(driver);
 		
 	}
 }
